@@ -1,0 +1,381 @@
+---
+title: Importance of sediment grain size to stocks and stability of organic carbon
+  buried in seagrass soils
+output:
+  html_document: default
+---
+<style>
+.html-widget {
+    margin: auto;
+}
+
+.nobullet li {
+  list-style-type: none;
+}
+</style>
+
+
+<style>
+.littlein {
+    margin-left: auto;
+    margin-right: auto;
+    width: 58em
+}
+</style>
+
+### Supplementary material
+
+</br>
+Jason L. Howard, Christian C. Lopes, Claudia I. Carrión, Sara S. Wilson, and James W. Fourqurean
+
+
+
+
+
+```{r setup, fig.align="center", echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(ggthemes)
+library(leaflet)
+library(mapview)
+places <- read.csv("place_labels.csv")
+df=read.csv("Howard_2019_ESCO_Data.csv")
+df$Cdensity=df$trad_LOI*df$density/100*1000
+```
+</br>
+</br>
+</br>
+```{r OR1, fig.align="center", echo=FALSE, warning=FALSE, message=FALSE}
+sites <- df %>% 
+  select(longitude, latitude, trad_LOI, bottom_K) %>% 
+  drop_na(longitude)
+
+strips_only <- df %>% 
+  drop_na(bottom_K)
+
+map <- leaflet(options = leafletOptions(zoomControl = FALSE, 
+                                        attributionControl = FALSE)) %>% # add basemap
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  setView(lng = -81.1, lat = (24.4+25.6)/2, zoom = 9) %>% # focus map in a certain area / zoom level
+ addMiniMap(tiles = providers$Esri.WorldStreetMap, # add inset map
+    position = 'topleft', 
+    width = 200, height = 150,
+    toggleDisplay = FALSE) %>% 
+    addCircleMarkers(data = strips_only, ~longitude, ~latitude,
+                    weight = 1.5,
+                   radius = 7, 
+                   fillColor = "blue",
+                   fillOpacity = 1, 
+                   stroke = T) %>% 
+  
+  addCircleMarkers(data = sites, ~longitude, ~latitude,
+                   weight = 1.5,
+                   fillColor = "red",
+                   radius = 4, 
+                   fillOpacity = 1, 
+                   stroke = T) %>% 
+
+addLegend("bottomright", 
+  colors =c("red",  "blue"),
+  labels= c("Study sites","Canvas strips recovered"),
+  opacity = 0.3) %>% 
+    addLabelOnlyMarkers(~long, ~lat, label =  ~as.character(label), 
+                        data = places, 
+               labelOptions = labelOptions(noHide = T, 
+                                           textsize = "16px", 
+                                           opacity = 0.4,
+                                           direction = 'center', 
+                                           textOnly = FALSE))
+   
+map
+
+```
+</br>
+<div class="littlein">
+**Online Resource 1** Map of South Florida including study sites and sites where canvas strips were successfully recovered.
+</div>
+</br>
+</br>
+</br>
+</br>
+<div class="littlein">
+**Online Resource 2** Modified Braun-Blanquet abundance scores, their description, and their assigned percent coverage.
+</div>
+```{r OR2, fig.align="center", echo=FALSE, warning=FALSE, message=FALSE}
+
+OR2 <- data.frame(`BB score` = c(0,0.1,0.5,1,2,3,4,5), 
+                  Description = c('Species absent from quadrat', 'Species represented by a solitary short shoot, <5% cover','Species represented by a few (<5) shoots, <5% cover', 'Species represented by many (>5) shoots, <5% cover', '5% - 25% cover','25% - 50% cover', '50% - 75% cover','75% - 100% cover'), 
+                  `Assigned percent coverage` =  c(0, 0.1, 0.5, 2.5, 15, 37.5, 62.5, 87.5))
+names(OR2) <- c('BB score','Description','Assigned percent coverage')
+
+OR2 %>% 
+    kable(caption = "", align = "clc") %>%         ## just for a pretty table
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```
+
+</br>
+</br>
+</br>
+</br>
+<div class="littlein">
+**Online Resource 3** Sediment categories and their assigned ranking of increasing coarseness.
+</div>
+```{r OR3, fig.align="center", echo=FALSE, warning=FALSE, fig.cap="Figure: Here is a really important caption.", message=FALSE}
+
+OR3 <- data.frame(`Sediment Category` = c('Mud', 'Sandy mud', 'Muddy sand', 'Sand', 'Course shell', 'Halimeda-Hash', 'Rubble', 'Live coral', 'Rock'), 
+                  `Numerical value` = 1:9, 
+                  `Description` =  c('Individual grains indistinguishable, easily compress in hand, sediment remains clumped after compression', 
+                                     'Majority of grains indistinguishable but textured upon touch, easily compress in hand, sediment remains clumped after compression', 
+                                     'Sandy texture upon touch but compresses in hand, sediment dissociates upon release with most grain falling in water column', 
+                                     'Clearly distinguishable grains, difficult to compress in hand, grains fall quickly in water', 'Shell and shell remains dominate sediments (approx. 5-10 mm in size)', 
+                                     'Remains of carbonate segments from Halimeda detritus (approx. 5-10 mm in size)',
+                                     'Medium size rock (approx. 10-25 mm in size)',
+                                     'Continuous living coral',
+                                     'Bedrock or solid biogenic carbonate formations'))
+
+names(OR3) <- c("Sediment Category", "Numerical value", "Description")
+
+OR3 %>% 
+  kable(caption = "", align='ccl') %>%         
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  column_spec(1, width = "13em") %>%   
+  column_spec(2, width = "10em") %>%   
+    column_spec(3, width = "30em")
+```
+
+</br>
+</br>
+</br>
+</br>
+
+<img src="Supplemental_in_Latex/OEM4_deployment_method.pdf" alt="some text"  width="4200" height="4200">
+<div class="littlein">
+**Online Resource 4** Depiction of single canvas assay deployment apparatus. Strips were deployed at each site (n = 10) at the sediment-water interface and 20 cm depth with foam buoy for easy detection.
+</div>
+</br>
+</br>
+</br>
+</br>
+<div class="littlein">
+**Online Resource 5** Summary of sediment and seagrass characteristics measured across study sites.
+</div>
+
+```{r OR5, fig.align="center", echo=FALSE, warning=FALSE, message=FALSE}
+OR5 <- read_csv('./Supplemental_in_Latex/extra_tables/OR5.csv')
+OR5$`Fraction of sites where present (%)`[c(1,2,3,4,5,10)] <- rep("",6)
+
+OR5$nothing[c(2,3,4)] <- c("C~org~ content (%)", "Dry bulk density (g cm^-3^)", "C~org~ density (mg cm^-3^)"  )
+names(OR5)[1] <- ""
+
+OR5 %>% 
+    kable(caption = "",align= c("lccccccc")) %>%         ## just for a pretty table
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>% 
+    column_spec(3, width = "10em")
+```
+
+</br>
+</br>
+</br>
+
+
+
+```{r OR6, fig.align="center", echo=FALSE, warning=FALSE, message=FALSE}
+
+
+df_map <- df %>% 
+  mutate(Cdensity = df$trad_LOI*df$density/100*1000) %>% 
+  select(longitude, latitude, Cdensity, sedimentscore_cata, sedimentscore_name)
+
+
+rbPal <- colorRampPalette(c('blue','red'))
+df_map$ColCorg <- rbPal(5)[as.numeric(cut(df_map$Cdensity,breaks = 5))]
+
+cuts<-levels(cut(df_map$Cdensity,breaks = 5))
+cuts<-gsub(","," - ",cuts)
+cuts<-gsub("\\(","[",cuts)
+
+
+###
+###map
+
+map_Corg <- leaflet(options = leafletOptions(zoomControl = FALSE, 
+                                             attributionControl = FALSE)) %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>% 
+  setView(lng = -81.1, lat = 24.9, zoom = 9) %>%
+  addMiniMap(  
+    tiles = providers$Esri.WorldStreetMap,
+    position = 'topleft', 
+    width = 200, height = 150,
+    toggleDisplay = FALSE) %>% 
+  addCircleMarkers(data = df_map, ~longitude, ~latitude,
+                   weight = 1.5,
+                   radius = 7, 
+                   fillColor = df_map$ColCorg,
+                   fillOpacity = 1, 
+                   stroke = T) %>% 
+  
+  addLegend("bottomright", 
+            title = "Soil C<sub>org</sub> (mg cm<sup>-3</sup>)",
+            colors =rbPal(5),
+            labels= cuts,
+            opacity = 1) 
+
+map_Corg
+
+#map2
+df_map$Col_sed <- (rev(rbPal(5)))[as.numeric(cut(df_map$sedimentscore_cata,breaks = c(0,1.1,2.1,3.1,4.1,5.1)))]
+
+sed_cat <- rev(c("mud","sandy mud","muddy sand","sand","gravel"))
+
+
+map_sed <- leaflet(options = leafletOptions(zoomControl = FALSE, 
+                                            attributionControl = FALSE)) %>% 
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  setView(lng = -81.1, lat = 24.9, zoom = 9) %>%
+  addMiniMap(
+    tiles = providers$Esri.WorldStreetMap,
+    position = 'topleft', 
+    width = 200, height = 150,
+    toggleDisplay = FALSE) %>% 
+  addCircleMarkers(data = df_map, ~longitude, ~latitude,
+                   weight = 1.5,
+                   radius = 7, 
+                   fillColor = df_map$Col_sed,
+                   fillOpacity = 1, 
+                   stroke = T) %>% 
+  addLegend("bottomright", 
+            title = "Sediment type",
+            colors =rbPal(5),
+            labels= sed_cat,
+            opacity = 1) 
+
+
+map_sed
+```
+<div class="littlein">
+</br>
+**Online Resource 6** Map showing surface soil C<sub>org</sub> density (*top*), and sediment type (*bottom*) across 45 study sites of Florida Bay and the Florida Keys.
+</br>
+</br>
+</br>
+</br>
+</br>
+**Online Resource 7** Summerized breakdown rates of canvas strips buried at 20 cm depth and deployed on the sediment surface
+</div>
+<br>
+```{r OR8, fig.align="center", echo=FALSE, warning=FALSE, message=FALSE}
+OR8a <- read.csv("./Supplemental_in_Latex/extra_tables/OR8a.csv")
+names(OR8a)[1] <- ""
+names(OR8a)[2:11] <- c("Buried", "Surface", "Buried", "Surface", "Buried", "Surface","Buried", "Surface","Buried", "Surface")
+OR8b_data <- c("Mean ± SE", "24.942 ± 3.636", "0.00514 ± 0.00009","0.0824 ± 0.0042", "0.3279 ± 0.0178", "0.000898 ± 0.000046")
+OR8B_names <- c("", "Tensile strength at T~final~ (N)","Tensile stregth loss (% day^-1^)", "Weight loss (% day^-1^)",
+                "Decay rate, *k* (year^-1^)", "Decay rate, *k* (day^-1^)")
+
+OR8b <- data_frame(OR8B_names[1] <-  c(OR8b_data[1]),
+                  OR8B_names[2] <-  c(OR8b_data[2]),
+                  OR8B_names[3] <-  c(OR8b_data[3]),
+                  OR8B_names[4] <-  c(OR8b_data[4]),
+                  OR8B_names[5] <-  c(OR8b_data[5]),
+                  OR8B_names[6] <-  c(OR8b_data[6])
+                  )
+names(OR8b) <- OR8B_names
+
+OR8a %>% 
+  kable( align= c("lccccccccc")) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, font_size = 10)  %>% 
+  add_header_above(c(" " = 1, 
+                     "Tensile strength at T~final~ (N)" = 2, 
+                     "Tensile stregth loss (% day^-1^)" = 2, 
+                     "Weight loss (% day^-1^)" = 2,
+                     "Decay rate, *k* (year^-1^)" = 2,
+                     "Decay rate, *k* (day^-1^)" = 2)) %>% 
+    column_spec(2:10, width = "14em") %>% 
+    column_spec(1, width = "24em")
+
+
+OR8b %>% 
+  kable( align= c("lccccc"), col.names = NULL) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 10) %>% 
+    column_spec(2:6, width = "50em") %>% 
+    column_spec(1, width = "25em") %>% 
+    group_rows("All sites", 1, 1, label_row_css = "background-color: #fff; color: #666;")
+
+```
+</br>
+</br>
+</br>
+</br>
+<div class="littlein">
+**Online Resource 8** Literature review of decay rates in seagrass ecosystems
+</div>
+```{r, fig.align="center", echo=FALSE, warning=FALSE, message=FALSE}
+SG=c("Z. marina", "Z. marina", "Z. marina", "T. testudinum", "Z. marina", "Z. marina", "Z. marina", "Z. marina", "C. nodosa", "T. testudinum", "T. testudinum", "Z. marina", "Z. marina", "H. stipulacea", "T. testudinum", "T. testudinum", "T. testudinum", "Z. marina", "T. testudinum", "T. testudinum", "T. testudinum", "P. australis", "H. tasmanica", "C. nodosa", "P. oceanica", "P. oceanica", "P. oceanica", "P. oceanica", "Z. noltii", "P. oceanica ,", "P. oceanica", "P. oceanica", "Z. marina", "C. nodosa", "P. oceanica", "C. nodosa", "C. nodosa", "T. testudinum", "T. testudinum", "R. mangle", "Z. noltii", "P. sinuosa", "A. griffithii", "A. antarctica", "Mixed species", "Z. muelleri", "T. hemprichii", "T. hemprichii", "T. hemprichii", "Z. muelleri")
+
+litter_type <- c("Mixed litter", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Mixed litter", "Seagrass leaves", "Seagrass leaves", "Seagrass rhizomes", "Seagrass roots", "Seagrass roots", "Seagrass rhizomes", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "belowground biomass", "belowground biomass", "belowground biomass", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass rhizomes", "Mangrove leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass leaves", "Seagrass rhizomes", "Seagrass leaves", "Seagrass leaves")
+
+rate <- c(0.004, 0.0035, 0.018, 0.0149, 0.0136, 0.0357, 0.0357, 0.0124, 0.023, 0.0007, 0.0183, 0.0048, 0.0035, 0.0032, 0.0048, 0.0279, 0.0007, 0.007, 0.017, 0.0085, 0.008, 0.0013, 0.004, 0.0039, 0.0088, 0.0002, 0.0006, 0.0003, 0.0164, 0.003, 0.0068, 0.0091, 0.019, 0.024, 0.0205, 0.0086, 0.0157, 0.017, 0.0032, 0.0064, 0.016, 0.0068, 0.0078, 0.0116, 0.0094, 0.0152, 0.011, 0.0268, 0.0394, 0.0055)
+
+citation <- c("Godshalk and Wetzel, 1978", "Harrison, 1982", "Harrison, 1982", "Rublee and Roman, 1982", "Pellikaan, 1982", "Pellikaan, 1984", "Pellikaan, 1984", "Kenworthy and Thayer, 1984", "Kenworthy and Thayer, 1984", "Kenworthy and Thayer, 1984", "Kenworthy and Thayer, 1984", "Kenworthy and Thayer, 1984", "Kenworthy and Thayer, 1984", "Wahbeh and Mahasneh, 1985", "Newell et al, 1984", "Newell et al, 1984", "Harrison, 1989", "Harrison, 1989", "Harrison, 1989", "Harrison, 1989", "Harrison, 1989", "Harrison, 1989", "Harrison, 1989", "Peduzzi and Herndl, 1991", "Romero et al, 1992", "Romero et al, 1992", "Romero et al, 1992", "Romero et al, 1992", "Bourgues et al, 1996", "Mateo and Romero, 1996", "Mateo and Romero, 1996", "Cebrian et al, 1997", "Cebrian et al, 1997", "Cebrian et al, 1997", "Mateo and Romero, 1997", "Pérez et al, 2001", "Pérez et al, 2001", "Fourqurean and Schrlau, 2003", "Fourqurean and Schrlau, 2003", "Fourqurean and Schrlau, 2003", "Machás et al, 2006", "Moore and Fairweather, 2006", "Moore and Fairweather, 2006", "Moore and Fairweather, 2006", "Moore and Fairweather, 2006", "Nicastro et al, 2012", "Chiu et al, 2013", "Yano et al, 2013", "Yano et al, 2013", "Trevathan-Tackett et al, 2017")
+
+lit_review <- data_frame(Substrate = litter_type, Details = litter_type, Breakdown = rate, Citation = citation)
+names(lit_review)[3] <- "Decay rate, *k* (day^-1^)"
+
+lit_review %>% 
+    kable( align= c("llcl")) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover")) 
+```
+</br>
+</br>
+
+<div class="littlein">
+## References
+</br>
+
+Bourgues S, Auby I, de Wit R, Labourg P. 1996. Differential anaerobic decomposition of seagrass (*Zostera noltii*) and macroalgal (*Monostroma obscurum*) biomass from Arcachon Bay (France). In Coastal Lagoon Eutrophication and ANaerobic Processes (CLE AN.) (pp. 121-131). Springer, Dordrecht.
+
+Cebrian J, Duarte CM, Marbà N, Enríquez S. 1997. Magnitude and fate of the production of four cooccurring western Mediterranean seagrass species. *Marine Ecology Progress Series* 155: 29-44.
+
+Chiu S, Huang Y, Lin H. 2013. Carbon budget of leaves of the tropical intertidal seagrass *Thalassia hemprichii*. *Estuarine, Coastal and Shelf Science* 125: 27–35.
+
+Fourqurean JW, Schrlau JE. 2003. Changes in nutrient content and stable isotope ratios of C and N during decomposition of seagrasses and mangrove leaves along a nutrient availability gradient in Florida Bay, USA. *Chemistry and Ecology* 19(5): 373-390.
+
+Godshalk GL, Wetzel RG. 1978. Decomposition of aquatic angiosperms. III. Zostera marina L. and a conceptual model of decomposition. *Aquatic Botany* 5: 329–354.
+
+Harrison PG. 1989. Detrital processing in seagrass systems: a review of factors affecting decay rates, remineralization and detritivory. *Aquatic Botany* 35: 263–288.
+
+Harrison PG. 1982. Control of microbial growth and of amphipod grazing by water-soluble compounds from leaves of *Zostera marina*. *Marine Biology* 67: 225–230.
+
+Kenworthy JW, Thayer GW. 1984. Production and decomposition of the roots and rhizomes of seagrasses, *Zostera marina* and *Thalassia testudinum*, in temperate and subtropical marine ecosystems. *Bulletin of Marine Science* 35: 364–379.
+
+Machás R, Santos R, Peterson B. 2006. Elemental and stable isotope composition of *Zostera noltii* (Horneman) leaves during the early phases of decay in a temperate mesotidal lagoon. *Estuarine, Coastal and Shelf Science* 66: 21–29.
+
+Mateo MA, Romero J. 1996. Evaluating seagrass leaf litter decomposition: an experimental comparison between litter-bag and oxygen-uptake methods. *Journal of Experimental Marine Biology and Ecology* 202: 97–106.
+
+Mateo MA, Romero J. 1997. Detritus dynamics in the seagrass Posidonia oceanica: elements for an ecosystem carbon and nutrient budget. *Marine Ecology Progress Series* 151: 43–53.
+
+Moore TN, Fairweather PG. 2006. Decay of multiple species of seagrass detritus is dominated by species identity, with an important influence of mixing litters. *Oikos* 114: 329–337.
+
+Newell SY, Fell JW, Statzell-Tallman A, Miller C, Cefalu R. 1984. Carbon and nitrogen dynamics in decomposing leaves of three coastal marine vascular plants of the subtropics. *Aquatic Botany* 19: 183–192.
+
+Nicastro A, Onoda Y, Bishop MJ. 2012. Direct and indirect effects of tidal elevation on eelgrass decomposition. *Marine Ecology Progress Series* 456: 53–62.
+
+Peduzzi P, Herndl GJ. 1991. Decomposition and significance of seagrass leaf litter (*Cymodocea nodosa*) for the microbial food web in coastal waters (Gulf of Trieste, Northern Adriatic Sea). *Marine Ecology Progress Series* 71(2): 163-174.
+
+Pellikaan GC. 1982. Decomposition processes of eelgrass, *Zostera marina* L. *Hydrobiological Bulletin* 16: 83–92.
+
+Pellikaan GC. 1984. Laboratory experiments on eelgrass (*Zostera marina* L.) decomposition. *Netherlands journal of sea research* 18: 360–383.
+
+Pérez M, Mateo MA, Alcoverro T, Romero J. 2001. Variability in detritus stocks in beds of the seagrass *Cymodocea nodosa*. *Botanica marina* 44: 523–531.
+
+Romero J, Gerard P, Christine PM, Mateo MA, Regnier C. 1992. The detritic compartment in a *Posidonia oceanica* meadow: litter features, decomposition rates, and mineral stocks. *Marine Ecology* 13(1): 69-83.
+
+Rublee PA, Roman MR. 1982. Decomposition of turtlegrass (*Thalassia testudinum* Konig) in flowing sea-water tanks and litterbags: compositional changes and comparison with natural particulate matter. *Journal of Experimental Marine Biology and Ecology* 58: 47–58.
+
+Trevathan-Tackett SM, Seymour JR, Nielsen DA,  Macreadie PI, Jeffries TC, Sanderman J, Baldock J, Howes JM, Steven AD, and Ralph PJ. 2017. Sediment anoxia limits microbial-driven seagrass carbon remineralization under warming conditions. *FEMS microbiology ecology* 93(6).
+
+Wahbeh MI, Mahasneh AM. 1985. Some aspects of decomposition of leaf litter of the seagrass *Halophila stipulacea* from the Gulf of Aqaba (Jordan). *Aquatic Botany* 21: 237–244.
+
+Yano Y, Adulyanukosol K, Tsuchiya M. 2013. The decomposition characteristics of the seagrass *Thalassia hemprichii* in Okinawa, Japan. *Galaxea, Journal of Coral Reef Studies* 15: 22–33.
+</div>

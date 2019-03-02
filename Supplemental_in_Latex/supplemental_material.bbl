@@ -1,0 +1,139 @@
+\begin{thebibliography}{23}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{DOI~\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{Bourgues et~al(1996)Bourgues, Auby, de~Wit, and
+  Labourg}]{Bourgues:1996ti}
+Bourgues S, Auby I, de~Wit R, Labourg PJ (1996) Differential anaerobic
+  decomposition of seagrass (\textit{Zostera noltii}) and macroalgal
+  (\textit{Monostroma obscurum}) biomass from arcachon bay (france). In:
+  Coastal Lagoon Eutrophication and Anaerobic Processes, Springer, pp 121--131
+
+\bibitem[{Cebrian et~al(1997)Cebrian, Duarte, Marb{\`a}, and
+  Enr{\'\i}quez}]{Cebrian:1997vp}
+Cebrian J, Duarte CM, Marb{\`a} N, Enr{\'\i}quez S (1997) {Magnitude and fate
+  of the production of four cooccurring western Mediterranean seagrass
+  species}. Marine Ecology Progress Series pp 29--44
+
+\bibitem[{Chiu et~al(2013)Chiu, Huang, and Lin}]{Chiu:2013uy}
+Chiu SH, Huang YH, Lin HJ (2013) {Carbon budget of leaves of the tropical
+  intertidal seagrass \textit{Thalassia hemprichii}}. Estuarine, Coastal and
+  Shelf Science 125:27--35
+
+\bibitem[{Fourqurean and Schrlau(2003)}]{Fourqurean:2003wh}
+Fourqurean JW, Schrlau JE (2003) {Changes in nutrient content and stable
+  isotope ratios of C and N during decomposition of seagrasses and mangrove
+  leaves along a nutrient availability gradient in Florida Bay, USA}. Chemistry
+  and Ecology 19(5):373--390
+
+\bibitem[{Godshalk and Wetzel(1978)}]{Godshalk:1978vc}
+Godshalk GL, Wetzel RG (1978) {Decomposition of aquatic angiosperms. III.
+  (\textit{Zostera marina} L. and a conceptual model of decomposition}. Aquatic
+  Botany 5:329--354
+
+\bibitem[{Harrison(1982)}]{Harrison:1982tu}
+Harrison PG (1982) {Control of microbial growth and of amphipod grazing by
+  water-soluble compounds from leaves of (\textit{Zostera marina})}. Marine
+  Biology 67(2):225--230
+
+\bibitem[{Harrison(1989)}]{Harrison:1989tp}
+Harrison PG (1989) {Detrital processing in seagrass systems: a review of
+  factors affecting decay rates, remineralization and detritivory}. Aquatic
+  Botany 35(3-4):263--288
+
+\bibitem[{Kenworthy and Thayer(1984)}]{Kenworthy:1984vc}
+Kenworthy JW, Thayer GW (1984) {Production and decomposition of the roots and
+  rhizomes of seagrasses, (\textit{Zostera marina}) and (\textit{Thalassia
+  testudinum}), in temperate and subtropical marine ecosystems}. Bulletin of
+  Marine Science 35(3):364--379
+
+\bibitem[{Mach{\'a}s et~al(2006)Mach{\'a}s, Santos, and
+  Peterson}]{Machas:2006wv}
+Mach{\'a}s R, Santos R, Peterson B (2006) {Elemental and stable isotope
+  composition of \textit{Zostera noltii} (Horneman) leaves during the early
+  phases of decay in a temperate mesotidal lagoon}. Estuarine, Coastal and
+  Shelf Science 66(1-2):21--29
+
+\bibitem[{Mateo and Romero(1996)}]{Mateo:1996tx}
+Mateo MA, Romero J (1996) {Evaluating seagrass leaf litter decomposition: an
+  experimental comparison between litter-bag and oxygen-uptake methods}.
+  Journal of Experimental Marine Biology and Ecology 202(2):97--106
+
+\bibitem[{Mateo and Romero(1997)}]{Mateo:1997uw}
+Mateo MA, Romero J (1997) {Detritus dynamics in the seagrass \textit{Posidonia
+  oceanica}: elements for an ecosystem carbon and nutrient budget}. Marine
+  Ecology Progress Series 151(1):43--53
+
+\bibitem[{Moore and Fairweather(2006)}]{Moore:2006wq}
+Moore TN, Fairweather PG (2006) {Decay of multiple species of seagrass detritus
+  is dominated by species identity, with an important influence of mixing
+  litters}. Oikos 114(2):329--337
+
+\bibitem[{Newell et~al(1984)Newell, Fell, Statzell-Tallman, Miller, and
+  Cefalu}]{Newell:1984wl}
+Newell SY, Fell JW, Statzell-Tallman A, Miller C, Cefalu R (1984) {Carbon and
+  nitrogen dynamics in decomposing leaves of three coastal marine vascular
+  plants of the subtropics}. Aquatic Botany 19(1-2):183--192
+
+\bibitem[{Nicastro et~al(2012)Nicastro, Onoda, and Bishop}]{Nicastro:2012wf}
+Nicastro A, Onoda Y, Bishop MJ (2012) {Direct and indirect effects of tidal
+  elevation on eelgrass decomposition}. Marine Ecology Progress Series
+  456:53--62
+
+\bibitem[{Peduzzi and Herndl(1991)}]{Peduzzi:1991up}
+Peduzzi P, Herndl GJ (1991) {Decomposition and significance of seagrass leaf
+  litter (\textit{Cymodocea nodosa}) for the microbial food web in coastal
+  waters (Gulf of Trieste, Northern Adriatic Sea)}. Marine Ecology Progress
+  Series pp 163--174
+
+\bibitem[{Pellikaan(1982)}]{Pellikaan:1982vb}
+Pellikaan GC (1982) {Decomposition processes of eelgrass, \textit{Zostera
+  marina} L.} Hydrobiological Bulletin 16(1):83--92
+
+\bibitem[{Pellikaan(1984)}]{Pellikaan:1984va}
+Pellikaan GC (1984) {Laboratory experiments on eelgrass (\textit{Zostera
+  marina} L.) decomposition}. Netherlands journal of sea research
+  18(3-4):360--383
+
+\bibitem[{P{\'e}rez et~al(2001)P{\'e}rez, Mateo, Alcoverro, and
+  Romero}]{Perez:2001ue}
+P{\'e}rez M, Mateo MA, Alcoverro T, Romero J (2001) {Variability in detritus
+  stocks in beds of the seagrass \textit{Cymodocea nodosa}}. Botanica marina
+  44(6):523--531
+
+\bibitem[{Romero et~al(1992)Romero, Pergent, Pergent-Martini, Mateo, and
+  Regnier}]{Romero:1992tx}
+Romero J, Pergent G, Pergent-Martini C, Mateo MA, Regnier C (1992) Marine
+  Ecology 13(1):69--83
+
+\bibitem[{Rublee and Roman(1982)}]{Rublee:1982wi}
+Rublee PA, Roman MR (1982) {Decomposition of turtlegrass (\textit{Thalassia
+  testudinum} Konig) in flowing sea-water tanks and litterbags: compositional
+  changes and comparison with natural particulate matter}. Journal of
+  Experimental Marine Biology and Ecology 58(1):47--58
+
+\bibitem[{Trevathan-Tackett et~al(2017)Trevathan-Tackett, Seymour, Nielsen,
+  Macreadie, Jeffries, Sanderman, Baldock, Howes, Steven, and
+  Ralph}]{TrevathanTackett:2017cn}
+Trevathan-Tackett SM, Seymour JR, Nielsen DA, Macreadie PI, Jeffries TC,
+  Sanderman J, Baldock J, Howes JM, Steven ADL, Ralph PJ (2017) {Sediment
+  anoxia limits microbial-driven seagrass carbon remineralization under warming
+  conditions.} FEMS Microbiology Ecology 93(6)
+
+\bibitem[{Wahbeh and Mahasneh(1985)}]{Wahbeh:1985vf}
+Wahbeh MI, Mahasneh AM (1985) {Some aspects of decomposition of leaf litter of
+  the seagrass (\textit{Halophila stipulacea} from the Gulf of Aqaba (Jordan)}.
+  Aquatic Botany 21(3):237--244
+
+\bibitem[{Yano et~al(2013)Yano, Adulyanukosol, and Tsuchiya}]{YANO:2013ta}
+Yano Y, Adulyanukosol K, Tsuchiya M (2013) {The decomposition characteristics
+  of the seagrass \textit{Thalassia hemprichii} in Okinawa, Japan}. Galaxea,
+  Journal of Coral Reef Studies 15:22--33
+
+\end{thebibliography}

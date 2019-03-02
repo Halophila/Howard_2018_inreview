@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: supplemental_material.aux
+The style file: spbasic.bst
+Database file #1: references_supplemental_material.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--empty title in Romero:1992tx
+You've used 23 entries,
+            3270 wiz_defined-function locations,
+            828 strings with 10019 characters,
+and the built_in function-call counts, 35873 in all, are:
+= -- 4216
+> -- 636
+< -- 16
++ -- 334
+- -- 198
+* -- 2497
+:= -- 3886
+add.period$ -- 22
+call.type$ -- 23
+change.case$ -- 182
+chr.to.int$ -- 23
+cite$ -- 24
+duplicate$ -- 3789
+empty$ -- 2648
+format.name$ -- 277
+if$ -- 7482
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 246
+newline$ -- 79
+num.names$ -- 92
+pop$ -- 970
+preamble$ -- 1
+purify$ -- 158
+quote$ -- 0
+skip$ -- 1547
+stack$ -- 0
+substring$ -- 3672
+swap$ -- 2154
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 207
+warning$ -- 1
+while$ -- 226
+width$ -- 0
+write$ -- 262
+(There was 1 warning)
