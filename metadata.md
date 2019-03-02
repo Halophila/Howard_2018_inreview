@@ -5,7 +5,7 @@
 site - name of sampling location
 longitude - decimal degrees format
 latitude - decimal degrees format
-depth - water depth in meters  
+depth - water depth in meters
 trad_LOI - loss on ignition at 550C      
 density - Dry bulk density, in g cm<sup>-3</sup>   
 sediment_score - calculated average sediment score, see text   
