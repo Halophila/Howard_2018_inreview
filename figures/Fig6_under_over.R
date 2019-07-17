@@ -4,7 +4,7 @@ library(grid)
 library(cowplot)
 library(png)
 
-df <- read_csv("../Howard_2019_ESCO_Data.csv") %>% 
+df <- read_csv("./Howard_2019_ESCO_Data.csv") %>% 
   drop_na(sedimentscore_name) %>% 
   mutate(sedimentscore_name = factor(sedimentscore_name, 
                                      levels = c("Mud", "Sandy mud", 
@@ -13,7 +13,7 @@ df <- read_csv("../Howard_2019_ESCO_Data.csv") %>%
 colors <- colorRampPalette(c("#000000", "#808080"))
 color_scale <- colors(5)
 
-img <- readPNG("Fig6_legend.png")
+img <- readPNG("./figures/Fig6_legend.png")
 g <- rasterGrob(img, interpolate=TRUE)
 imagexy <- c(0.55,0.37)
 imagewidth <- c(0.20, 0.127)
@@ -50,4 +50,3 @@ g$layout$clip[g$layout$name=="panel"] <- "off"
 grid.draw(g)
 
 ggsave("Fig6_under_over.pdf",g, width = 5, height = 4.8)
-

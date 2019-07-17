@@ -1,6 +1,7 @@
 library(tidyverse)
 library(cowplot)
-df <- read_csv("../lab_bench_exp_Data.csv") %>% 
+
+df <- read_csv("./lab_bench_exp_Data.csv") %>% 
   select(`tensile strength`,`% weight loss`) %>% 
   drop_na()
 
@@ -22,8 +23,8 @@ lab_bench_plot <- df %>%
                      limits = c(0,300), 
                      breaks = seq(0, 300, by = 50))+
   scale_y_continuous(expand = c(0.015, 0.0), 
-                   limits = c(0,30), 
-                   breaks = seq(0, 30, by = 10))+
+                     limits = c(0,30), 
+                     breaks = seq(0, 30, by = 10))+
   geom_smooth(method = "lm", 
               formula =  y ~ log10(x), color = 'grey50', 
               se = FALSE, fullrange = TRUE)+

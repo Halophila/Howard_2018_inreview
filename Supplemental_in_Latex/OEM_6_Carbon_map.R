@@ -4,8 +4,8 @@ library(kableExtra)
 library(ggthemes)
 library(leaflet)
 library(mapview)
-places <- read.csv("../place_labels.csv")
-df <- read_csv("../Howard_2019_ESCO_Data.csv")
+places <- read.csv("./place_labels.csv")
+df <- read_csv("./Howard_2019_ESCO_Data.csv")
 
 df <- df %>% 
   mutate(Cdensity = df$trad_LOI*df$density/100*1000) %>% 
@@ -15,7 +15,7 @@ df <- df %>%
 rbPal <- colorRampPalette(c('blue','red'))
 df$ColCorg <- rbPal(5)[as.numeric(cut(df$Cdensity,breaks = 5))]
 
-cuts<-levels(cut(geo$Cdensity,breaks = 5))
+cuts<-levels(cut(df$Cdensity,breaks = 5))
 cuts<-gsub(","," - ",cuts)
 cuts<-gsub("\\(","[",cuts)
 
@@ -75,7 +75,7 @@ map_sed <- leaflet(options = leafletOptions(zoomControl = FALSE,
   addLegend("bottomright", 
             title = "Sediment type",
             colors =rbPal(5),
-            labels= df$sed_cat,
+            labels= sed_cat,
             opacity = 1) 
 
 

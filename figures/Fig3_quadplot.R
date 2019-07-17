@@ -1,11 +1,10 @@
 ##4square_ seagrass and C chararistics
 
-
 library(tidyverse)
 library(cowplot)
 library(personalFunctions) ### from Halophia github
 library(gvlma)
-df=read.csv("../Howard_2019_ESCO_Data.csv")
+df=read_csv("./Howard_2019_ESCO_Data.csv")
 
 df$Cdensity=df$trad_LOI*df$density/100*1000
 
@@ -69,7 +68,7 @@ canopy_vs_stock
 #seagrass vs mud
 
 ##linear model
-line=(lm(df$mud~df$total_cover))
+line=(lm(df$mud_percent~df$total_cover))
 gvlma(line)
 eqn1 <- equationPrinter(line)[1]
 eqn2 <- equationPrinter(line)[2]
@@ -95,7 +94,7 @@ coverage_vs_mud
 #height vs mud
 
 ##linear model
-line=(lm(df$mud~df$canopy_ht))
+line=(lm(df$mud_percent~df$canopy_ht))
 gvlma(line)
 eqn1 <- equationPrinter(line)[1]
 eqn2 <- equationPrinter(line)[2]
@@ -123,8 +122,8 @@ left_plots <- plot_grid(coverage_vs_stock, coverage_vs_mud, ncol = 1,
                         align = 'v', axis = 'l',
                         rel_heights=c(0.47,0.5))
 right_plots <- plot_grid(canopy_vs_stock, canopy_vs_mud, ncol = 1,
-                        align = 'v', axis = 'l',
-                        rel_heights=c(0.47,0.5))
+                         align = 'v', axis = 'l',
+                         rel_heights=c(0.47,0.5))
 
 
 

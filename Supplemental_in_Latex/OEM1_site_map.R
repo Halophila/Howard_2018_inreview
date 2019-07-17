@@ -4,8 +4,9 @@ library(kableExtra)
 library(ggthemes)
 library(leaflet)
 library(mapview)
-places <- read.csv("../place_labels.csv")
-sites <- read_csv("../Howard_2019_ESCO_Data.csv") %>% 
+
+places <- read_csv("./place_labels.csv")
+sites <- read_csv("./Howard_2019_ESCO_Data.csv") %>% 
   select(longitude, latitude, trad_LOI, bottom_K) %>% 
   drop_na(longitude)
 

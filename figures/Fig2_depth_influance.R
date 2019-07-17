@@ -1,12 +1,11 @@
 ##depth affects plot
 
-#online plot1 
 library(tidyverse)
 library(cowplot)
 library(gvlma)
 library(personalFunctions) ### from my "Halophia" github
 
-df=read_csv("../Howard_2019_ESCO_Data.csv")
+df=read_csv("./Howard_2019_ESCO_Data.csv")
 
 df$Cdensity=df$trad_LOI*df$density/100*1000
 
@@ -32,7 +31,7 @@ CorgContent <- df %>%
 ##soil density
 
 ##linear model
-line=(lm(df$density~df$Depth))
+line=(lm(df$density~df$depth))
 gvlma(line)
 
 eqn1 <- equationPrinter(line)[1]
@@ -87,8 +86,7 @@ Cdensity <-  df %>%
 
 
 big_plot <- plot_grid(CorgContent, density, Cdensity, ncol = 1, 
-          align = 'v', axis = 'l') # aligning vertically along the left axis
+                      align = 'v', axis = 'l') # aligning vertically along the left axis
 
 
 ggsave("Fig2_depth_influance.pdf",big_plot, width = 4.8, height = 9.6)
-

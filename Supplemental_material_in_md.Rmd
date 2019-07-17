@@ -35,13 +35,12 @@ Jason L. Howard, Christian C. Lopes, Claudia I. Carrión, Sara S. Wilson, and Ja
 ```{r setup, fig.align="center", echo=FALSE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-library(knitr)
 library(kableExtra)
 library(ggthemes)
 library(leaflet)
 library(mapview)
-places <- read.csv("place_labels.csv")
-df=read.csv("Howard_2019_ESCO_Data.csv")
+places <- read_csv("place_labels.csv")
+df <- read_csv("Howard_2019_ESCO_Data.csv")
 df$Cdensity=df$trad_LOI*df$density/100*1000
 ```
 </br>
@@ -108,10 +107,11 @@ map
 OR2 <- data.frame(`BB score` = c(0,0.1,0.5,1,2,3,4,5), 
                   Description = c('Species absent from quadrat', 'Species represented by a solitary short shoot, <5% cover','Species represented by a few (<5) shoots, <5% cover', 'Species represented by many (>5) shoots, <5% cover', '5% - 25% cover','25% - 50% cover', '50% - 75% cover','75% - 100% cover'), 
                   `Assigned percent coverage` =  c(0, 0.1, 0.5, 2.5, 15, 37.5, 62.5, 87.5))
+
 names(OR2) <- c('BB score','Description','Assigned percent coverage')
 
 OR2 %>% 
-    kable(caption = "", align = "clc") %>%         ## just for a pretty table
+  kable(caption = "", align = "clc") %>%         ## just for a pretty table
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
 ```
 
@@ -142,7 +142,7 @@ OR3 %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
   column_spec(1, width = "13em") %>%   
   column_spec(2, width = "10em") %>%   
-    column_spec(3, width = "30em")
+  column_spec(3, width = "30em")
 ```
 
 </br>
@@ -266,7 +266,7 @@ map_sed
 </div>
 <br>
 ```{r OR8, fig.align="center", echo=FALSE, warning=FALSE, message=FALSE}
-OR8a <- read.csv("./Supplemental_in_Latex/extra_tables/OR8a.csv")
+OR8a <- read_csv("./Supplemental_in_Latex/extra_tables/OR8a.csv")
 names(OR8a)[1] <- ""
 names(OR8a)[2:11] <- c("Buried", "Surface", "Buried", "Surface", "Buried", "Surface","Buried", "Surface","Buried", "Surface")
 OR8b_data <- c("Mean ± SE", "24.942 ± 3.636", "0.00514 ± 0.00009","0.0824 ± 0.0042", "0.3279 ± 0.0178", "0.000898 ± 0.000046")
@@ -280,6 +280,7 @@ OR8b <- data_frame(OR8B_names[1] <-  c(OR8b_data[1]),
                   OR8B_names[5] <-  c(OR8b_data[5]),
                   OR8B_names[6] <-  c(OR8b_data[6])
                   )
+
 names(OR8b) <- OR8B_names
 
 OR8a %>% 

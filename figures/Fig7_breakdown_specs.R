@@ -1,29 +1,25 @@
 library(tidyverse)
 library(plotrix)
 
-df=read_csv("../Howard_2019_ESCO_Data.csv") 
-
-df_trimmed <- data.frame("sedimentscore_name" = df$sedimentscore_name, 
-                      "buried" = df$`bottom percent loss day`,
-                      "surface" = df$`surface percent loss day`)
-
-sedtype_long <- df_trimmed %>% 
+df <- read_csv("./Howard_2019_ESCO_Data.csv") %>% 
+  select(sedimentscore_name, "bottom percent loss day", "surface percent loss day") %>% 
+  `colnames<-`(c("sedimentscore_name", "buried", "surface")) %>% 
   gather(key = "location",value = "rate", buried:surface) %>% 
-  drop_na(sedimentscore_name)
-
-summarized =sedtype_long %>%
+  drop_na(sedimentscore_name) %>%
   group_by(sedimentscore_name, location) %>% 
   summarise(mean = mean(rate,na.rm = TRUE),
-            SE = st.err(rate,na.rm = TRUE)) %>% 
-  ungroup()
+            SE = std.error(rate,na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  replace_na(list(SE = 0))
 
 sedorder=c("Mud", "Sandy mud", "Muddy sand", "Sand", "Gravel")
-summarized$sedimentscore_name = factor(summarized$sedimentscore_name,sedorder)
+df$sedimentscore_name = factor(df$sedimentscore_name,sedorder)
 
 
 #barchart
 
-p <- ggplot(summarized, aes(x=as.factor(sedimentscore_name), y=mean, fill=location)) +
+p <- df %>% 
+  ggplot(aes(x=as.factor(sedimentscore_name), y=mean, fill=location)) +
   geom_bar(position=position_dodge(), stat="identity", colour='black') +
   geom_errorbar(aes(ymin=mean-SE, ymax=mean+SE), width=.2,position=position_dodge(.9)) +
   scale_y_continuous(expand = c(0, 0))+
@@ -35,5 +31,5 @@ p <- ggplot(summarized, aes(x=as.factor(sedimentscore_name), y=mean, fill=locati
         axis.title.x=element_blank(),
         axis.text.x = element_text(angle = 30, hjust = 0.7, vjust = 0.8))
 
-ggsave("Fig7_breakdown_specs.pdf",p, width = 5.8, height = 5.8)
+ggsave("Fig7_breakdown_specs.pdf", p, width = 5.8, height = 5.8)
  
