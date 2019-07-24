@@ -4,14 +4,14 @@ library(tidyverse)
 library(cowplot)
 library(personalFunctions) ### from Halophia github
 library(gvlma)
-df=read_csv("./Howard_2019_ESCO_Data.csv")
+df <- read_csv("./Howard_2019_ESCO_Data.csv")
 
-df$Cdensity=df$trad_LOI*df$density/100*1000
+df$Cdensity <- df$trad_LOI*df$density/100*1000
 
 #coverage vs stock
 
 ##linear model
-line=(lm(df$Cdensity~df$total_cover))
+line = (lm(df$Cdensity~df$total_cover))
 gvlma(line)
 eqn1 <- equationPrinter(line)[1]
 eqn2 <- equationPrinter(line)[2]
@@ -20,11 +20,11 @@ eqn2 <- equationPrinter(line)[2]
 coverage_vs_stock <- df %>% 
   ggplot(aes(total_cover, Cdensity))+
   geom_point()+
-  geom_smooth(method ="lm", se = FALSE, fullrange = TRUE, color = "grey50")+
+  geom_smooth(method  = "lm", se = FALSE, fullrange = TRUE, color = "grey50")+
   theme_few()+  
-  theme(text = element_text(size=14),
-        axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
+  theme(text = element_text(size = 14),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
         plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"))+
   scale_x_continuous(expand = c(0.005, 0.0), limits = c(0,81), breaks = seq(0, 80, by = 20))+
   scale_y_continuous(expand = c(0.005, 0.0), limits = c(0,31), breaks = seq(0,30,by = 5))+
@@ -38,7 +38,7 @@ coverage_vs_stock
 ##height vs stock
 
 ##linear model
-line=(lm(df$Cdensity~df$canopy_ht))
+line = (lm(df$Cdensity~df$canopy_ht))
 gvlma(line)
 eqn1 <- equationPrinter(line)[1]
 eqn2 <- equationPrinter(line)[2]
@@ -48,13 +48,13 @@ eqn2 <- equationPrinter(line)[2]
 canopy_vs_stock <- df %>% 
   ggplot(aes(canopy_ht,Cdensity))+
   geom_point()+
-  geom_smooth(method ="lm", se = FALSE, fullrange = TRUE, color = "grey50")+
+  geom_smooth(method  = "lm", se = FALSE, fullrange = TRUE, color = "grey50")+
   theme_few()+  
-  theme(text = element_text(size=14),
-        axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
+  theme(text = element_text(size = 14),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
         plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"))+
   scale_x_continuous(expand = c(0.005, 0.0), limits = c(0,45), breaks = seq(0, 40, by = 10))+
   scale_y_continuous(expand = c(0.005, 0.0), limits = c(0,31), breaks = seq(0,30,by = 5))+
@@ -68,7 +68,7 @@ canopy_vs_stock
 #seagrass vs mud
 
 ##linear model
-line=(lm(df$mud_percent~df$total_cover))
+line = (lm(df$mud_percent~df$total_cover))
 gvlma(line)
 eqn1 <- equationPrinter(line)[1]
 eqn2 <- equationPrinter(line)[2]
@@ -78,9 +78,9 @@ eqn2 <- equationPrinter(line)[2]
 coverage_vs_mud <- df %>% 
   ggplot(aes(total_cover, mud_percent))+
   geom_point()+
-  geom_smooth(method ="lm", se = FALSE, fullrange = TRUE, color = "grey50")+
+  geom_smooth(method  = "lm", se = FALSE, fullrange = TRUE, color = "grey50")+
   theme_few()+  
-  theme(text = element_text(size=14),
+  theme(text = element_text(size = 14),
         plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"))+
   scale_x_continuous(expand = c(0.005, 0.0), limits = c(0,81), breaks = seq(0, 80, by = 20))+
   scale_y_continuous(expand = c(0.005, 0.0), limits = c(0,91), breaks = seq(0,90,by = 10))+
@@ -94,7 +94,7 @@ coverage_vs_mud
 #height vs mud
 
 ##linear model
-line=(lm(df$mud_percent~df$canopy_ht))
+line = (lm(df$mud_percent~df$canopy_ht))
 gvlma(line)
 eqn1 <- equationPrinter(line)[1]
 eqn2 <- equationPrinter(line)[2]
@@ -104,11 +104,11 @@ eqn2 <- equationPrinter(line)[2]
 canopy_vs_mud <- df %>% 
   ggplot(aes(canopy_ht, mud_percent))+
   geom_point()+
-  geom_smooth(method ="lm", se = FALSE, fullrange = TRUE, color = "grey50")+
+  geom_smooth(method  = "lm", se = FALSE, fullrange = TRUE, color = "grey50")+
   theme_few()+  
-  theme(text = element_text(size=14),
-        axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
+  theme(text = element_text(size = 14),
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
         plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"))+
   scale_x_continuous(expand = c(0.005, 0.0), limits = c(0,45), breaks = seq(0, 40, by = 10))+
   scale_y_continuous(expand = c(0.005, 0.0), limits = c(0,91), breaks = seq(0,90,by = 10))+
@@ -120,15 +120,15 @@ canopy_vs_mud <- df %>%
 ### top graphes
 left_plots <- plot_grid(coverage_vs_stock, coverage_vs_mud, ncol = 1,
                         align = 'v', axis = 'l',
-                        rel_heights=c(0.47,0.5))
+                        rel_heights = c(0.47,0.5))
 right_plots <- plot_grid(canopy_vs_stock, canopy_vs_mud, ncol = 1,
                          align = 'v', axis = 'l',
-                         rel_heights=c(0.47,0.5))
+                         rel_heights = c(0.47,0.5))
 
 
 
 big_plot <- plot_grid(left_plots, right_plots, ncol = 2,
-                      rel_widths=c(0.5,0.45))
+                      rel_widths = c(0.5,0.45))
 
 
 big_plot

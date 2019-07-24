@@ -8,7 +8,7 @@ places <- read.csv("./place_labels.csv")
 df <- read_csv("./Howard_2019_ESCO_Data.csv")
 
 df <- df %>% 
-  mutate(Cdensity = df$trad_LOI*df$density/100*1000) %>% 
+  mutate(Cdensity = df$trad_LOI * df$density / 100*1000) %>% 
   select(longitude, latitude, Cdensity, sedimentscore_cata, sedimentscore_name)
 
 

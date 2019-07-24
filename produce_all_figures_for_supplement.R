@@ -1,4 +1,7 @@
 library(here)
+library(tidyverse)
+
+
 list_of_fig_files <- list.files(here("Supplemental_in_Latex")) %>% 
   str_subset(pattern = ".R")
 

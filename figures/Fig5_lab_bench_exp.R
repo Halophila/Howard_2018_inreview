@@ -5,10 +5,10 @@ df <- read_csv("./lab_bench_exp_Data.csv") %>%
   select(`tensile strength`,`% weight loss`) %>% 
   drop_na()
 
-model=lm(df$`% weight loss` ~ log10(df$`tensile strength`))
+model <- lm(df$`% weight loss` ~ log10(df$`tensile strength`))
 
-b=(summary(model)$coefficients[1,1])
-m=(summary(model)$coefficients[2,1])
+b <- (summary(model)$coefficients[1,1])
+m <- (summary(model)$coefficients[2,1])
 
 eqn1 <- expression(paste(italic("y"),' = 29.5 - 12.4 log'[10], italic(" x")))
 eqn2 <- expression(paste('r'^2~'= 0.77'))

@@ -5,9 +5,9 @@ library(cowplot)
 library(gvlma)
 library(personalFunctions) ### from my "Halophia" github
 
-df=read_csv("./Howard_2019_ESCO_Data.csv")
+df <- read_csv("./Howard_2019_ESCO_Data.csv")
 
-df$Cdensity=df$trad_LOI*df$density/100*1000
+df$Cdensity <- df$trad_LOI*df$density/100*1000
 
 
 
@@ -60,7 +60,7 @@ density <- df %>%
 ##Cdensity
 
 ##linear model
-line=(lm(df$Cdensity~df$depth))
+line <- lm(df$Cdensity~df$depth)
 gvlma(line)
 
 eqn1 <- equationPrinter(line)[1]

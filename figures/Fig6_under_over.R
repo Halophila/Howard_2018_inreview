@@ -35,12 +35,16 @@ over_over_plot <-   df %>%
                     ymin =imagexy[2], ymax=imagexy[2] + imagewidth[2])+
   theme(text = element_text(size=14),
         legend.position="none",
-        plot.margin=unit(c(0.5,2.2,0.5,0.5),"cm"))+####
+        plot.margin=unit(c(0.5,2.2,0.5,0.5),"cm"))+
   geom_abline(slope = 1, col = "grey70", linetype = 2)+
-  scale_x_continuous(expand = c(0.005, 0.0), limits = c(0,0.63), breaks = seq(0, 0.6, by = 0.2))+
-  scale_y_continuous(expand = c(0.005, 0.0), limits = c(0,0.63), breaks = seq(0, 0.6, by = 0.2))+
-  labs(y = expression(paste("Surface OM breakdown rates, ", italic(k), " (yr"^{-1},')')),
-       x = expression(paste("Buried OM breakdown rates, ", italic(k), " (yr"^{-1},')')))+
+  scale_x_continuous(expand = c(0.005, 0.0), limits = c(0,0.63), 
+                     breaks = seq(0, 0.6, by = 0.2))+
+  scale_y_continuous(expand = c(0.005, 0.0), limits = c(0,0.63), 
+                     breaks = seq(0, 0.6, by = 0.2))+
+  labs(y = expression(paste("Surface OM breakdown rates, ", italic(k), 
+                            " (yr"^{-1},')')),
+       x = expression(paste("Buried OM breakdown rates, ", italic(k), 
+                            " (yr"^{-1},')')))+
   annotate("text", 0.125, 0.1, label = "1:1", col = "grey70",angle = 43)
 
 over_over_plot

@@ -1,4 +1,5 @@
 library(here)
+library(tidyverse)
 
 list_of_fig_files <- list.files(here("figures")) %>% 
   str_subset(pattern = "png", negate=T)

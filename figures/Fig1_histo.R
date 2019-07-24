@@ -1,21 +1,20 @@
 #C histograms
 
-library(ggthemes)
 library(tidyverse)
 library(cowplot)
 library(plotrix)
 
-df=read_csv("./Howard_2019_ESCO_Data.csv")%>% 
+df <- read_csv("./Howard_2019_ESCO_Data.csv") %>% 
   filter(!is.na(longitude))
 
-df$Cdensity=df$trad_LOI*df$density/100*1000
+df$Cdensity <- df$trad_LOI*df$density/100*1000
 
 
 ## Corg content trad.LOI...org
-global_mean = c(1.8)
+global_mean <-  c(1.8)
 variable_of_interest <- df$trad_LOI
-ylimits = c(0,.5)
-xlimits = c(0,10)
+ylimits <-  c(0,.5)
+xlimits <-  c(0,10)
 
 Corg_plot <- df %>% 
   ggplot(aes(trad_LOI)) + 
@@ -35,7 +34,7 @@ geom_vline(xintercept = global_mean, col = "grey50", linetype = "longdash")+
   scale_x_continuous(expand = c(0.000, 0.0), limits = xlimits)+
   #limits = c(0,0.61), breaks = seq(0, 0.6, by = 0.2))+
   labs(x = expression(paste("Soil C"[org] ~" content (% dry wt.)")), 
-       y="Frequency")+
+       y ="Frequency")+
   theme(plot.margin = unit(c(0.2, 0.2, 0.2, 0.2), "cm"))+
   annotate("text", x = xlimits[2]*0.8, y = ylimits[2]*0.6, 
            label = paste0("n = ", length(variable_of_interest),
@@ -48,10 +47,10 @@ geom_vline(xintercept = global_mean, col = "grey50", linetype = "longdash")+
 
 
 ## DBD
-global_mean = c(0.92)
+global_mean <- c(0.92)
 variable_of_interest <- df$density
-ylimits = c(0,0.5)
-xlimits = c(0,1.6)
+ylimits <- c(0,0.5)
+xlimits <- c(0,1.6)
 
 DBD_plot <- df %>% 
   ggplot(aes(density)) + 
@@ -80,8 +79,8 @@ geom_vline(xintercept = global_mean, col = "grey50", linetype = "longdash")+
 ## C density
 global_mean = c(16.56)
 variable_of_interest <- df$Cdensity
-ylimits = c(0,0.5)
-xlimits = c(0,30)
+ylimits <- c(0,0.5)
+xlimits <- c(0,30)
 
 Cdensity <- df %>% 
   ggplot(aes(Cdensity)) + 
